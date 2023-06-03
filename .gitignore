@@ -1,0 +1,6 @@
+build/
+*.ic8
+*.untrim
+*.bin
+
+tools/gcc/
