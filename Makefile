@@ -23,7 +23,7 @@ UNDEFINED_SYMS := undefined_syms.ld
 
 export OUTPUT := $(BUILD)/$(TARGET)
 
-SFILES  := $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))
+SFILES  := $(foreach dir,$(ASM),$(wildcard $(dir)/*.s))
 BINFILES := $(foreach dir,$(BIN),$(wildcard $(dir)/*.bin))
 
 OFILES_BIN := $(addprefix $(BUILD)/,$(addsuffix .o,$(BINFILES)))
@@ -52,10 +52,15 @@ $(OUTPUT): $(OUTPUT).elf
 	@$(OBJCOPY) -O binary $< $@
 
 $(OUTPUT).elf: $(OFILES)
+	echo $(OFILES)
 	@echo Linking the ROM...
-	@$(LD) $(OFILES) -T $(LD_SCRIPT) -o $@
+	@$(LD) $(OFILES) -EL -T $(LD_SCRIPT) -o $@
 
 
-$(BUILD)/bin/%.bin.o $(BUILD)/bin/%.bin.h: bin/%.bin | $(BUILD_DIRS)
+$(BUILD)/%.bin.o $(BUILD)/%.bin.h: %.bin | $(BUILD_DIRS)
 	@echo Copying bin file $<...
-	@bin2s -a 4 -H $(BUILD)/$<.h $< | $(AS) -o $(BUILD)/$<.o
+	@bin2s -a 4 -H $(BUILD)/$<.h $< | $(AS) -little -o $(BUILD)/$<.o
+
+$(BUILD)/%.s.o: %.s | $(BUILD_DIRS)
+	@echo Assembing $<...
+	@$(AS) -little -o $@ $<

@@ -2,5 +2,9 @@ build/
 *.ic8
 *.untrim
 *.bin
+*.bak
+*.o
+*.exe
+*.elf
 
 tools/gcc/
