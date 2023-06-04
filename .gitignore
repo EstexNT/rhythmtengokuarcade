@@ -1,10 +1,13 @@
 build/
+baserom.bin
 *.ic8
 *.untrim
-*.bin
 *.bak
 *.o
 *.exe
 *.elf
+shsplit.py
+*.pdf
+bin/bindata_0c020140.bin
 
 tools/gcc/

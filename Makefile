@@ -52,9 +52,8 @@ $(OUTPUT): $(OUTPUT).elf
 	@$(OBJCOPY) -O binary $< $@
 
 $(OUTPUT).elf: $(OFILES)
-	echo $(OFILES)
 	@echo Linking the ROM...
-	@$(LD) $(OFILES) -EL -T $(LD_SCRIPT) -o $@
+	@$(LD) $(OFILES) -EL -T $(LD_SCRIPT) -T $(UNDEFINED_SYMS) -o $@
 
 
 $(BUILD)/%.bin.o $(BUILD)/%.bin.h: %.bin | $(BUILD_DIRS)
