@@ -9,7 +9,8 @@ SECTIONS {
         build/asm/header.s.o(.text);
         build/asm/entry.s.o(.text);
         build/src/code_0c020140.c.o(.text);
-        build/bin/bindata_0c020440.bin.o(.rodata*);
+        build/src/code_0c021250.c.o(.text);
+        build/bin/bindata_0c021724.bin.o(.rodata*);
         __text_end = .;
 
         _end = __text_end;
