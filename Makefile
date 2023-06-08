@@ -63,7 +63,7 @@ $(OUTPUT): $(OUTPUT).elf
 
 $(OUTPUT).elf: $(OFILES)
 	@echo Linking the ROM...
-	@$(LD) $(OFILES) -EL -T $(LD_SCRIPT) -T $(UNDEFINED_SYMS) -o $@
+	@$(LD) $(OFILES) -Map $(OUTPUT).map -EL -T $(LD_SCRIPT) -T $(UNDEFINED_SYMS) -o $@
 
 $(BUILD)/%.c.o: %.c | $(BUILD_DIRS)
 	@echo Compiling $<...
