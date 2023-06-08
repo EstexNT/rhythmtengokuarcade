@@ -2,15 +2,21 @@
 
 
 ifeq (,$(wildcard baserom.bin))
-    $(error No ROM provided. Get the decrypted "fpr-24423.ic8" file, run "python tools/preproc.py YourIC8File" and rename the output file into baserom.bin")
+    $(error No ROM provided. Get the decrypted "fpr-24423.ic8" file, run "python tools/preproc.py YourIC8File" and rename the output file into "baserom.bin")
 endif
 
-
-COMP_DIR := tools/gcc
-OBJCOPY := $(COMP_DIR)/objcopy
-LD := $(COMP_DIR)/ld
-AS := $(COMP_DIR)/as
-CC1 := $(COMP_DIR)/cc1
+ifneq (, $(shell which sh-elf-as))
+    CROSS := sh-elf-
+else ifneq (, $(shell which sh4-linux-gnu-as))
+    CROSS := sh4-linux-gnu-
+else
+    $(error No binutils for SH-4 installed. Please install "binutils-sh-elf" or "binutils-sh4-linux-gnu")
+endif
+COMPDIR := tools/gcc
+OBJCOPY := $(CROSS)objcopy
+LD := $(CROSS)ld
+AS := $(CROSS)as
+CC1 := $(COMPDIR)/cc1
 
 TARGET := rta
 BUILD := build
