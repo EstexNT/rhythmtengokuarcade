@@ -118,21 +118,7 @@ D_0c0200dc:
 D_0c0200e0:
     .4byte func_0c020c08 /* main */
 
-/* Alignment probably? */
-/* 0c0200e4 */ nop
-/* 0c0200e6 */ nop
-/* 0c0200e8 */ nop
-/* 0c0200ea */ nop
-/* 0c0200ec */ nop
-/* 0c0200ee */ nop
-/* 0c0200f0 */ nop
-/* 0c0200f2 */ nop
-/* 0c0200f4 */ nop
-/* 0c0200f6 */ nop
-/* 0c0200f8 */ nop
-/* 0c0200fa */ nop
-/* 0c0200fc */ nop
-/* 0c0200fe */ nop
+.align 6
 
 /* C++ Static Initializer */
 .global func_0c020100
@@ -166,5 +152,5 @@ L_0c02012c:
 /* 0c02012e */ lds.l @r15+, PR
 /* 0c020130 */ mov.l @r15+, r14
 /* 0c020132 */ rts
-/* 0c020134 */ mov.l @r15+, r12
+/* 0c020134 */  mov.l @r15+, r12
 .balign 16, 0

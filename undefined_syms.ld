@@ -1,1 +1,11 @@
 func_0c020c08 = 0x0c020c08;
+D_0c2779fc = 0x0c2779fc;
+D_0c2b1ae0 = 0x0c2b1ae0;
+D_0c2b1b04 = 0x0c2b1b04;
+D_0c431e18 = 0x0c431e18;
+D_0c431e1c = 0x0c431e1c;
+D_0c431e34 = 0x0c431e34;
+D_0c431e58 = 0x0c431e58;
+D_0c461c5c = 0x0c461c5c;
+D_0c461c5d = 0x0c461c5d;
+D_0c4669d8 = 0x0c4669d8;

@@ -10,12 +10,14 @@ COMP_DIR := tools/gcc
 OBJCOPY := $(COMP_DIR)/objcopy
 LD := $(COMP_DIR)/ld
 AS := $(COMP_DIR)/as
+CC1 := $(COMP_DIR)/cc1
 
 TARGET := rta
 BUILD := build
 ASM := asm
 BIN := bin
-ALL_DIRS := $(BIN) $(ASM)
+SRC := src
+ALL_DIRS := $(BIN) $(ASM) $(SRC)
 ALL_DIRS := $(sort $(ALL_DIRS)) # remove duplicates
 BUILD_DIRS := $(BUILD) $(addprefix $(BUILD)/,$(ALL_DIRS))
 LD_SCRIPT := rta.ld
@@ -25,11 +27,13 @@ export OUTPUT := $(BUILD)/$(TARGET)
 
 SFILES  := $(foreach dir,$(ASM),$(wildcard $(dir)/*.s))
 BINFILES := $(foreach dir,$(BIN),$(wildcard $(dir)/*.bin))
+CFILES := $(foreach dir,$(SRC),$(wildcard $(dir)/*.c))
 
 OFILES_BIN := $(addprefix $(BUILD)/,$(addsuffix .o,$(BINFILES)))
-OFILES_SOURCE := $(addprefix $(BUILD)/,$(addsuffix .o,$(SFILES)))
+OFILES_ASM := $(addprefix $(BUILD)/,$(addsuffix .o,$(SFILES)))
+OFILES_SRC := $(addprefix $(BUILD)/,$(addsuffix .o,$(CFILES)))
 
-OFILES := $(OFILES_BIN) $(OFILES_SOURCE)
+OFILES := $(OFILES_BIN) $(OFILES_ASM) $(OFILES_SRC)
 
 .PHONY: default clean
 .SECONDARY: 
@@ -55,6 +59,10 @@ $(OUTPUT).elf: $(OFILES)
 	@echo Linking the ROM...
 	@$(LD) $(OFILES) -EL -T $(LD_SCRIPT) -T $(UNDEFINED_SYMS) -o $@
 
+$(BUILD)/%.c.o: %.c | $(BUILD_DIRS)
+	@echo Compiling $<...
+	@$(CC1) -Iinclude/ -O1 -fno-delayed-branch -o $(BUILD)/$*.s $<
+	@$(AS) -little -o $@ $(BUILD)/$*.s
 
 $(BUILD)/%.bin.o $(BUILD)/%.bin.h: %.bin | $(BUILD_DIRS)
 	@echo Copying bin file $<...
