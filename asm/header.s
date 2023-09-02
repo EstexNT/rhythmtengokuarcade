@@ -35,7 +35,7 @@
 /* 0138 */ .short 0
 
 
-/* ROM Settings (Weight?) */
+/* ROM Wait */
 /* 013A */ .short 0
 /* 013C */ .4byte 0 
 /* 0140 */ .4byte 0

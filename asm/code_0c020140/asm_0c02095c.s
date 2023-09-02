@@ -7,7 +7,7 @@ func_0c02095c:
 /* 0c020964 */ mov.l r12, @-r15
 /* 0c020966 */ mov.l r13, @-r15
 /* 0c020968 */ mov.l r14, @-r15
-/* 0c02096a */ fmov dr12, @-r15
+/* 0c02096a */ fmov fr12, @-r15
 /* 0c02096c */ sts.l PR, @-r15
 /* 0c02096e */ add #0xe8, r15
 /* 0c020970 */ mov r15, r14
@@ -325,7 +325,7 @@ L_0c020bb4:
 /* 0c020bb4 */ add #0x18, r14
 /* 0c020bb6 */ mov r14, r15
 /* 0c020bb8 */ lds.l @r15+, PR
-/* 0c020bba */ fmov @r15+, dr12
+/* 0c020bba */ fmov @r15+, fr12
 /* 0c020bbc */ mov.l @r15+, r14
 /* 0c020bbe */ mov.l @r15+, r13
 /* 0c020bc0 */ mov.l @r15+, r12

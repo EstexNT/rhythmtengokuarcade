@@ -67,8 +67,8 @@ $(OUTPUT).elf: $(OFILES)
 
 $(BUILD)/%.c.o: %.c | $(BUILD_DIRS)
 	@echo Compiling $<...
-	@$(CC1) -Iinclude/ -O1 -fno-delayed-branch -o $(BUILD)/$*.s $<
-	@$(AS) -little -o $@ $(BUILD)/$*.s
+	@$(CC1) -Iinclude/ -O1 -fno-delayed-branch  -falign-functions=2 -o $(BUILD)/$*.s $<  
+	@$(AS) --isa=sh4 -little -o $@ $(BUILD)/$*.s
 
 $(BUILD)/%.bin.o $(BUILD)/%.bin.h: %.bin | $(BUILD_DIRS)
 	@echo Copying bin file $<...
@@ -76,4 +76,4 @@ $(BUILD)/%.bin.o $(BUILD)/%.bin.h: %.bin | $(BUILD_DIRS)
 
 $(BUILD)/%.s.o: %.s | $(BUILD_DIRS)
 	@echo Assembing $<...
-	@$(AS) -little -o $@ $<
+	@$(AS) --isa=sh4 -little -o $@ $<

@@ -2,9 +2,9 @@
 func_0c020d14:
 /* 0c020d14 */ mov.l r14, @-r15
 /* 0c020d16 */ mov r15, r14
-/* 0c020d18 */ fmov dr4, dr0
+/* 0c020d18 */ fmov fr4, fr0
 /* 0c020d1a */ mov.l D_0c020d2c, r1
-/* 0c020d1c */ fmov dr4, @r1
+/* 0c020d1c */ fmov fr4, @r1
 /* 0c020d1e */ mov.l D_0c020d30, r1
 /* 0c020d20 */ mov.l r4, @r1
 /* 0c020d22 */ mov r14, r15
