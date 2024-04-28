@@ -7,6 +7,7 @@ baserom.bin
 *.exe
 *.elf
 shsplit.py
+switch.py
 *.pdf
 
 tools/gcc/

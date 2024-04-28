@@ -11,7 +11,9 @@ SECTIONS {
         build/src/code_0c020140.c.o(.text);
         build/src/code_0c021250.c.o(.text);
         build/src/code_0c022224.c.o(.text);
-        build/bin/bindata_0c022840.bin.o(.rodata*);
+        build/src/code_0c025930.c.o(.text);
+        build/bin/bindata_0c026fdc.bin.o(.rodata*);
+        /*0c06e6c0 = start of game code likely*/
         __text_end = .;
 
         _end = __text_end;
